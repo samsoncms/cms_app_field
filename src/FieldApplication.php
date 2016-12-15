@@ -1,5 +1,6 @@
 <?php 
 namespace samson\cms\web\field;
+use samson\activerecord\StructureField;
 use samsonframework\orm\ArgumentInterface;
 
 /**
@@ -218,7 +219,8 @@ class FieldApplication extends \samsoncms\Application
     public function __async_deleterelation($structure_id, $field_id)
     {
         /** @var \samson\cms\CMSNavField $relation */
-        if (dbQuery('\samson\cms\CMSNavField')->FieldID($field_id)->StructureID($structure_id)->first($relation)) {
+//        if (dbQuery('\samson\cms\CMSNavField')->FieldID($field_id)->StructureID($structure_id)->first($relation)) {
+        if (dbQuery(StructureField::class)->FieldID($field_id)->StructureID($structure_id)->first($relation)) {
             // Delete relation
             $relation->delete();
         }
